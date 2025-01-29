@@ -1,17 +1,25 @@
-# # import qrcode
+import qrcode
 
-# # data = input("Enter the text or URL: ").strip()
-# # filename = input("Enter the filename: ").strip()
-# # qr = qrcode.QRCode(box_size=10, border=4)
-# # qr.add_data(data)import qrcode
+def generate_qr(data, filename):
+    qr = qrcode.make(data)
 
-# data = input('Enter the text or URL: ').strip()
-# filename = input('Enter the filename: ').strip()
-# qr = qrcode.QRCode(box_size=10, border=4)
-# qr.add_data(data)
-# image = qr.make_image(fill_color='black', back_color='white')
-# image.save(filename)
-# print(f'QR code saved as {filename}')
-# # image = qr.make_image(fill_color="black", back_color="white")
-# # image.save(filename)
-# # print(f"QR code saved as {filename}")
+    qr.save(filename)
+    print(f"QR Code saved as '{filename}'")
+
+
+data_type = input(
+    "Enter 'text' or 'url' to generate a QR code: "
+).lower()
+
+if data_type == "text":
+    text = input("Enter the text: ")
+    filename = input("Enter the filename to save the QR code (e.g., text_qr.png): ")
+    generate_qr(text, filename)
+
+elif data_type == "url":
+    url = input("Enter the website URL: ")
+    filename = input("Enter the filename to save the QR code (e.g., url_qr.png): ")
+    generate_qr(url, filename)
+
+else:
+    print("Invalid input! Please enter 'text' or 'url'.")
