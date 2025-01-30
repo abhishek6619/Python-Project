@@ -1,15 +1,20 @@
 import qrcode
+import os
 
 def generate_qr(data, filename):
+    project_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Generated-Image")
+    
+    os.makedirs(project_folder, exist_ok=True)
+    
+    filepath = os.path.join(project_folder, filename)
+    
     qr = qrcode.make(data)
+    qr.save(filepath)
+    
+    print(f"QR Code saved as '{filepath}'")
 
-    qr.save(filename)
-    print(f"QR Code saved as '{filename}'")
-
-
-data_type = input(
-    "Enter 'text' or 'url' to generate a QR code: "
-).lower()
+# Get user input
+data_type = input("Enter 'text' or 'url' to generate a QR code: ").lower()
 
 if data_type == "text":
     text = input("Enter the text: ")
