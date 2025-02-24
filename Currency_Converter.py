@@ -1,7 +1,3 @@
-# import requests
-
-# def get_exchange_rate(base_currency, target_currency):
-#     url = f"https://api.exchangerate-api.com/v4/latest/{base_currency}"
 import requests
 import tkinter as tk
 from tkinter import ttk, messagebox
